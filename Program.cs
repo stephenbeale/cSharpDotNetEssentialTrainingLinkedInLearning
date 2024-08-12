@@ -11,20 +11,23 @@ decimal d = 400.85m;
 int b = default;
 bool tf = default;
 
-Console.WriteLine($"{a}, {b},{tf},{c},{f},{d}");
-Console.WriteLine($"{c + a}");
-Console.WriteLine($"{(char)(c + a)}");
-Console.WriteLine($"{f + a}");
-Console.WriteLine($"{f + c}");
+//Console.WriteLine($"{a}, {b},{tf},{c},{f},{d}");
+//Console.WriteLine($"{c + a}");
+//Console.WriteLine($"{(char)(c + a)}");
+//Console.WriteLine($"{f + a}");
+//Console.WriteLine($"{f + c}");
 
 
 S s1;
 s1.a = 5;
 s1.b = false;
-MyClass myClass = new MyClass();
-myClass.a = 5;
-myClass.b = default;
 
+//Perform an operation on a struct
+void StructOp(S theStruct)
+{
+    theStruct.a = a;
+    theStruct.b = true;
+}
 
 //Class
 
