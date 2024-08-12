@@ -48,6 +48,30 @@ Console.WriteLine($"{cl.a}, {cl.b}");
 ClassOp(cl);
 Console.WriteLine($"{cl.a}, {cl.b}");
 
+
+void DoSomeBigOperation()
+{
+    //create a large memory allocation that's only used in this function??
+    byte[] myArray = new byte[1000000];
+
+    Console.WriteLine($"Allocated memory is: {GC.GetTotalMemory(false)}");
+    Console.ReadLine();
+}
+
+//Retrieve and print the total memory allocated
+Console.WriteLine($"Allocated memory is: {GC.GetTotalMemory(false)}");
+Console.ReadLine();
+
+//Call the function that allocates a large memory chunk
+DoSomeBigOperation();
+
+//TODO
+GC.Collect();
+
+//Retrieve and print the updated total memory amoun
+Console.WriteLine($"Allocated memory is: {GC.GetTotalMemory(false)}");
+Console.ReadLine();
+
 void ClassOp(MyClass theClass)
 {
     theClass.a = 10;
@@ -66,4 +90,6 @@ struct S
     public int a;
     public bool b;
 }
+
+
 
