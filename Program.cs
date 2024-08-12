@@ -13,6 +13,9 @@ Console.WriteLine(dt);
 Console.WriteLine(tm);
 
 //Inspecting properties on dates
+Console.WriteLine(today.DayOfWeek);
+Console.WriteLine(today.DayOfYear);
+Console.WriteLine(today.AddDays(23.65));
 
 //Methods on dates to change values
 
