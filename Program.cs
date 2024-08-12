@@ -43,6 +43,11 @@ Console.WriteLine($"{s1.a}, {s1.b}");
 
 MyClass cl = new MyClass {a = 5, b = false };
 
+Console.WriteLine("Objects are passed by reference, since they are: ");
+Console.WriteLine($"{cl.a}, {cl.b}");
+ClassOp(cl);
+Console.WriteLine($"{cl.a}, {cl.b}");
+
 void ClassOp(MyClass theClass)
 {
     theClass.a = 10;
