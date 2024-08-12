@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
 Console.WriteLine("Hello, World!");
 
 //Declare some data types with values
@@ -16,5 +17,16 @@ Console.WriteLine($"{(char)(c + a)}");
 Console.WriteLine($"{f + a}");
 Console.WriteLine($"{f + c}");
 
+//Class
 
+class MyClass {
+    public int a;
+    public int b;
+};
+
+struct S
+{
+    public int a;
+    public bool b;
+}
 
