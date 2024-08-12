@@ -21,11 +21,14 @@ string[] strs = { "one", "two", "three", "four" };
 //}
 
 //String concatenation
-string outstr;
-outstr = String.Concat(strs);
+//string outstr;
+//outstr = String.Concat(strs);
 
 
-//Joining strings together
-outstr = String.Join('.', strs);
-Console.WriteLine(outstr);
-outstr = String.Join("---", strs);
+////Joining strings together
+//outstr = String.Join('.', strs);
+//Console.WriteLine(outstr);
+//outstr = String.Join("---", strs);
+//Console.WriteLine(outstr);
+
+//String comparison
