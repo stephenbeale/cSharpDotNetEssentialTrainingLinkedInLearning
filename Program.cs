@@ -3,8 +3,14 @@ DateTime now = DateTime.Now;
 Console.WriteLine(now);
 
 //DateTime.Today
+DateTime today = DateTime.Today;
+Console.WriteLine(today);
 
 //DateOnly and TimeOnly
+DateOnly dt = DateOnly.FromDateTime(DateTime.Now);
+TimeOnly tm = TimeOnly.FromDateTime(now);
+Console.WriteLine(dt);
+Console.WriteLine(tm);
 
 //Inspecting properties on dates
 
