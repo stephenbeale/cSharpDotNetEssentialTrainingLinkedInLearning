@@ -21,11 +21,19 @@ decimal val2 = 1234.5678m;
 //D6 = decimal with 6 digits of precision
 Console.WriteLine($"{val1:D6}, {val1:N2}, {val1:F1}, {val1:G3}");
 
+
 Console.WriteLine($"Sales by quarter:");
-Console.WriteLine($"{quarters[0]} {quarters[1]} {quarters[2]} {quarters[3]} ");
-Console.WriteLine($"{sales[0]} {sales[1]} {sales[2]} {sales[3]} ");
+//Specify 12 spaces
+Console.WriteLine($"{quarters[0], 12} {quarters[1],12} {quarters[2],12} {quarters[3],12} ");
+
+//Specify 12 spaces BUT currency
+Console.WriteLine($"{sales[0], 12:C0} {sales[1],12:C0} {sales[2],12:C0} {sales[3],12:C0} ");
+
+//Specify
 Console.WriteLine("International sales:");
-Console.WriteLine($"{intlMixPct[0]} {intlMixPct[1]} {intlMixPct[2]} {intlMixPct[3]} ");
+Console.WriteLine($"{intlMixPct[0], 12:P0} {intlMixPct[1],12:P0} {intlMixPct[2],12:P1} {intlMixPct[3],12:P2} ");
+
+
 
 
 
