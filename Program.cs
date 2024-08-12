@@ -25,16 +25,35 @@ s1.b = false;
 //Perform an operation on a struct
 void StructOp(S theStruct)
 {
-    theStruct.a = a;
+    theStruct.a = 10;
     theStruct.b = true;
     Console.WriteLine($"{theStruct.a}, {theStruct.b}");
 }
 
+//Struct = value type
+
+Console.WriteLine("Structs are passed by copy since they are value types:");
+Console.WriteLine($"{s1.a}, {s1.b}");
+StructOp(s1);
+Console.WriteLine($"{s1.a}, {s1.b}");
+
+//Class = reference object
+
 //Class
+
+MyClass cl = new MyClass {a = 5, b = false };
+
+void ClassOp(MyClass theClass)
+{
+    theClass.a = 10;
+    theClass.b = true;
+    Console.WriteLine($"{theClass.a}, {theClass.b}");
+}
+
 
 class MyClass {
     public int a;
-    public int b;
+    public bool b;
 };
 
 struct S
