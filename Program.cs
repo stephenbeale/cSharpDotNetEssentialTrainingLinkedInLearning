@@ -15,7 +15,16 @@ Console.WriteLine(tm);
 //Inspecting properties on dates
 Console.WriteLine(today.DayOfWeek);
 Console.WriteLine(today.DayOfYear);
-Console.WriteLine(today.AddDays(23.65));
+//Can add multiple
+Console.WriteLine(
+    today
+    .AddDays(23.65)
+    .AddMonths(12)
+    .AddYears(43));
+
+now = now.AddDays(87);
+Console.WriteLine(now);
+Console.WriteLine(now.ToUniversalTime().ToString());
 
 //Methods on dates to change values
 
