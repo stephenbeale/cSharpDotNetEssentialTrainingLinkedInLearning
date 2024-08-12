@@ -15,6 +15,8 @@ Console.WriteLine(tm);
 //Inspecting properties on dates
 Console.WriteLine(today.DayOfWeek);
 Console.WriteLine(today.DayOfYear);
+
+//Methods on dates to change values
 //Can add multiple
 Console.WriteLine(
     today
@@ -26,6 +28,8 @@ now = now.AddDays(87);
 Console.WriteLine(now);
 Console.WriteLine(now.ToUniversalTime().ToString());
 
-//Methods on dates to change values
-
 //TimeSpan class for a duration of time
+DateTime AprilFools = new DateTime(now.Year, 4, 1);
+DateTime NewYears = new DateTime(now.Year, 1, 1);
+TimeSpan interval = AprilFools - NewYears;
+Console.WriteLine(interval);
