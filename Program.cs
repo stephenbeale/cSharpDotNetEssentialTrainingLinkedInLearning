@@ -16,3 +16,7 @@ decimal val2 = 1234.5678m;
  */
 Console.WriteLine($"{val1:D}, {val1:N}, {val1:F}, {val1:G}");
 Console.WriteLine($"{val2:E}, {val2:N}, {val2:F}, {val2:G}");
+
+//D6 = decimal with 6 digits of precision
+Console.WriteLine($"{val1:D6}, {val1:N2}, {val1:F1}, {val1:G3}");
+Console.WriteLine($"{val2:E}, {val2:N}, {val2:F}, {val2:G}");
