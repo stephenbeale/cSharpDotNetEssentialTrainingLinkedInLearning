@@ -32,8 +32,19 @@ string[] strs = { "one", "two", "three", "four" };
 //Console.WriteLine(outstr);
 
 //String comparison
-bool isEqual = str2.Equals(str3);
-Console.WriteLine($"{isEqual}");
+//bool isEqual = str2.Equals(str3);
+//Console.WriteLine($"{isEqual}");
 
-int result = String.Compare(str2, "This is a string");
-Console.WriteLine($"{result}");
+////Compare function
+///*
+// * < 0: 1st string is BEFORE 2nd in sort order
+// *   0: same position in sort order
+// * > 0: 1st string is AFTER 2nd in sort order
+// */
+//int result = String.Compare(str2, "This is a string");
+//Console.WriteLine($"{result}");
+
+//Replacing content
+
+string outstr = str1.Replace("fox", "cat");
+Console.WriteLine($"{outstr}");
