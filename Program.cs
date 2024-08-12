@@ -1,4 +1,6 @@
 ﻿//DateTime.Now to get current Dt
+using System.Globalization;
+
 DateTime now = DateTime.Now;
 Console.WriteLine(now);
 
@@ -27,6 +29,23 @@ Console.WriteLine(
 now = now.AddDays(87);
 Console.WriteLine(now);
 Console.WriteLine(now.ToUniversalTime().ToString());
+
+
+//See here for format specifier docs and more examples: https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings#FullDateLongTime
+Console.WriteLine("Format specifier: D");
+Console.WriteLine(now.ToString("D"));
+
+Console.WriteLine("Format specifier: F");
+Console.WriteLine(now.ToString("F", CultureInfo.CreateSpecificCulture("en-CY")));
+
+Console.WriteLine("Format specifier: G");
+Console.WriteLine(now.ToString("G", CultureInfo.CreateSpecificCulture("en-CY")));
+
+Console.WriteLine("Format specifier: M");
+Console.WriteLine(now.ToString("M"));
+
+Console.WriteLine("Format specifier: o");
+Console.WriteLine(now.ToString("o"));
 
 //TimeSpan class for a duration of time
 DateTime AprilFools = new DateTime(now.Year, 4, 1);
