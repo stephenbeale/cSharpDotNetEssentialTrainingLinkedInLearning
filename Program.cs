@@ -17,6 +17,15 @@ Console.WriteLine($"{(char)(c + a)}");
 Console.WriteLine($"{f + a}");
 Console.WriteLine($"{f + c}");
 
+
+S s1;
+s1.a = 5;
+s1.b = false;
+MyClass myClass = new MyClass();
+myClass.a = 5;
+myClass.b = default;
+
+
 //Class
 
 class MyClass {
