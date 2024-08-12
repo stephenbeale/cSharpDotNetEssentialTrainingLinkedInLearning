@@ -18,6 +18,7 @@ Console.WriteLine($"{teststr.Contains("fox", StringComparison.CurrentCultureIgno
 
 //StartsWith and EndsWith
 Console.WriteLine($"{teststr.StartsWith("the")}");
-Console.WriteLine($"{teststr.EndsWith("dog")}");
+Console.WriteLine($"{teststr.StartsWith("the")}", StringComparison.CurrentCultureIgnoreCase);
+Console.WriteLine($"{teststr.EndsWith("dog")}", StringComparison.CurrentCultureIgnoreCase);
 
 //IndexOf, LastIndexOf
