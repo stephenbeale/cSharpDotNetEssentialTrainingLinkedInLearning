@@ -1,38 +1,39 @@
-﻿//Parsing numbers from strings
+﻿using System.Net;
 
-string[] NumStrs = { "  1  ", "  1.45  " , "-100", "5e+04"};
+int[] quarters = { 1, 2, 3, 4 };
+int[] sales = { 10000, 150000, 20000, 2250000 };
+double[] intlMixPct = { .386, .413, .421, .457 };
+int val1 = 1234;
+decimal val2 = 1234.5678m;
 
-int testInt;
-float testFloat;
-bool result;
+//Specifying numerical formatting
+/*
+ * N = number
+ * D = decimal
+ * F = float
+ * G = general
+ * etc
+ */
+//Console.WriteLine($"{val1:D}, {val1:N}, {val1:F}, {val1:G}");
+//Console.WriteLine($"{val2:E}, {val2:N}, {val2:F}, {val2:G}");
 
-//Parse method - attempts to parse a string to a number
-//foreach (string str in NumStrs)
-//{
-//	try
-//	{
-//		testFloat = float.Parse(str);
-//		Console.WriteLine($"Parsed number is {testFloat}");
-//        testInt = int.Parse(str);
-//        Console.WriteLine($"Parsed int is {testInt}");
-//    }
-//	catch (FormatException e)
-//	{
-//		Console.WriteLine($"Could not parse '{str}': {e.Message}");
-//	}
-//}
+//Add number after to specify precision
+//D6 = decimal with 6 digits of precision
+Console.WriteLine($"{val1:D6}, {val1:N2}, {val1:F1}, {val1:G3}");
 
-//TryParse method returns 'true' if the parse is successful
-result = int.TryParse(NumStrs[0], out testInt);
-Console.WriteLine($"{result} -- '{NumStrs[0]} : {testInt}'");
 
-result = float.TryParse(NumStrs[1],out testFloat);
-Console.WriteLine($"{result} -- '{NumStrs[1]} : {testFloat}'");
+Console.WriteLine($"Sales by quarter:");
+//Specify 12 spaces
+Console.WriteLine($"{quarters[0], 12} {quarters[1],12} {quarters[2],12} {quarters[3],12} ");
 
-result = int.TryParse(NumStrs[2], out testInt);
-Console.WriteLine($"{result} -- '{NumStrs[2]} : {testInt}'");
+//Specify 12 spaces BUT currency
+Console.WriteLine($"{sales[0], 12:C0} {sales[1],12:C0} {sales[2],12:C0} {sales[3],12:C0} ");
 
-result = float.TryParse(NumStrs[3], out testFloat);
-Console.WriteLine($"{result} -- '{NumStrs[3]} : {testFloat}'");
+//Specify
+Console.WriteLine("International sales:");
+Console.WriteLine($"{intlMixPct[0], 12:P0} {intlMixPct[1],12:P0} {intlMixPct[2],12:P1} {intlMixPct[3],12:P2} ");
 
-//confused now
+
+
+
+
