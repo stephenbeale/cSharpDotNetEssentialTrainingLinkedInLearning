@@ -34,3 +34,5 @@ Console.WriteLine($"{result} -- '{NumStrs[2]} : {testInt}'");
 
 result = float.TryParse(NumStrs[3], out testFloat);
 Console.WriteLine($"{result} -- '{NumStrs[3]} : {testFloat}'");
+
+//confused now
