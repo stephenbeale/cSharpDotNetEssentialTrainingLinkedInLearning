@@ -39,3 +39,5 @@ Console.WriteLine($"{String.IsNullOrEmpty(str3)}");
 Console.WriteLine($"{String.IsNullOrWhiteSpace(str2)}");
 
 Console.WriteLine($"{String.Compare(str3, str2)}");
+
+//hello
