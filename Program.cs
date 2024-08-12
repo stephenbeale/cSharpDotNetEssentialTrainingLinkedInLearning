@@ -32,3 +32,8 @@ string[] strs = { "one", "two", "three", "four" };
 //Console.WriteLine(outstr);
 
 //String comparison
+bool isEqual = str2.Equals(str3);
+Console.WriteLine($"{isEqual}");
+
+int result = String.Compare(str2, "This is a string");
+Console.WriteLine($"{result}");
