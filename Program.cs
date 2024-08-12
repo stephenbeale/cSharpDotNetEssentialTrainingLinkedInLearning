@@ -1,39 +1,58 @@
-﻿using System.Net;
+﻿//DateTime.Now to get current Dt
+using System.Globalization;
 
-int[] quarters = { 1, 2, 3, 4 };
-int[] sales = { 10000, 150000, 20000, 2250000 };
-double[] intlMixPct = { .386, .413, .421, .457 };
-int val1 = 1234;
-decimal val2 = 1234.5678m;
+DateTime now = DateTime.Now;
+Console.WriteLine(now);
 
-//Specifying numerical formatting
-/*
- * N = number
- * D = decimal
- * F = float
- * G = general
- * etc
- */
-//Console.WriteLine($"{val1:D}, {val1:N}, {val1:F}, {val1:G}");
-//Console.WriteLine($"{val2:E}, {val2:N}, {val2:F}, {val2:G}");
+//DateTime.Today
+DateTime today = DateTime.Today;
+Console.WriteLine(today);
 
-//Add number after to specify precision
-//D6 = decimal with 6 digits of precision
-Console.WriteLine($"{val1:D6}, {val1:N2}, {val1:F1}, {val1:G3}");
+//DateOnly and TimeOnly
+DateOnly dt = DateOnly.FromDateTime(DateTime.Now);
+TimeOnly tm = TimeOnly.FromDateTime(now);
+Console.WriteLine(dt);
+Console.WriteLine(tm);
 
+//Inspecting properties on dates
+Console.WriteLine(today.DayOfWeek);
+Console.WriteLine(today.DayOfYear);
 
-Console.WriteLine($"Sales by quarter:");
-//Specify 12 spaces
-Console.WriteLine($"{quarters[0], 12} {quarters[1],12} {quarters[2],12} {quarters[3],12} ");
+//Methods on dates to change values
+//Can add multiple
+Console.WriteLine(
+    today
+    .AddDays(23.65)
+    .AddMonths(12)
+    .AddYears(43));
 
-//Specify 12 spaces BUT currency
-Console.WriteLine($"{sales[0], 12:C0} {sales[1],12:C0} {sales[2],12:C0} {sales[3],12:C0} ");
-
-//Specify
-Console.WriteLine("International sales:");
-Console.WriteLine($"{intlMixPct[0], 12:P0} {intlMixPct[1],12:P0} {intlMixPct[2],12:P1} {intlMixPct[3],12:P2} ");
+now = now.AddDays(87);
+Console.WriteLine(now);
+Console.WriteLine(now.ToUniversalTime().ToString());
 
 
+//See here for format specifier docs and more examples: https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings#FullDateLongTime
+Console.WriteLine("Format specifier: D");
+Console.WriteLine(now.ToString("D"));
 
+Console.WriteLine("Format specifier: F");
+Console.WriteLine(now.ToString("F", CultureInfo.CreateSpecificCulture("en-CY")));
 
+Console.WriteLine("Format specifier: G");
+Console.WriteLine(now.ToString("G", CultureInfo.CreateSpecificCulture("en-CY")));
 
+Console.WriteLine("Format specifier: M");
+Console.WriteLine(now.ToString("M"));
+
+Console.WriteLine("Format specifier: o");
+Console.WriteLine(now.ToString("o"));
+
+//TimeSpan class for a duration of time
+DateTime AprilFools = new DateTime(now.Year, 4, 1);
+DateTime NewYears = new DateTime(now.Year, 1, 1);
+TimeSpan interval = AprilFools - NewYears;
+Console.WriteLine(interval);
+
+//Dates can be compared using regular operators
+Console.WriteLine($"{NewYears < AprilFools}");
+Console.WriteLine($"{NewYears > AprilFools}");
