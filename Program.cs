@@ -26,11 +26,13 @@ bool result;
 result = int.TryParse(NumStrs[0], out testInt);
 Console.WriteLine($"{result} -- '{NumStrs[0]} : {testInt}'");
 
-result = int.TryParse(NumStrs[1],out testInt);
-Console.WriteLine($"{result} -- '{NumStrs[1]} : {testInt}'");
+result = float.TryParse(NumStrs[1],out testFloat);
+Console.WriteLine($"{result} -- '{NumStrs[1]} : {testFloat}'");
 
 result = int.TryParse(NumStrs[2], out testInt);
 Console.WriteLine($"{result} -- '{NumStrs[2]} : {testInt}'");
 
 result = float.TryParse(NumStrs[3], out testFloat);
 Console.WriteLine($"{result} -- '{NumStrs[3]} : {testFloat}'");
+
+//confused now
