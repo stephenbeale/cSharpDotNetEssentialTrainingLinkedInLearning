@@ -1,43 +1,36 @@
-﻿//string str0 = String.Empty;
-//Console.WriteLine(str0);
-//Console.WriteLine(String.IsNullOrEmpty(str0));
-//string str1 = str0 + "hello there";
-//Console.WriteLine(str1);
-//string[] strs = {"my", "word", "what", "an", "array" };
-//string str2 = String.Join("++", strs);
-//Console.WriteLine(str2);
+﻿//Parsing numbers from strings
 
-//Example file for searching string content
+string[] NumStrs = { "  1  ", "  1.45  " , "-100", "5e+04"};
 
-string teststr = "The quick brown fox jumps over the lazy Dog";
+int testInt;
+float testFloat;
+bool result;
 
-////Contains
-//Console.WriteLine($"{teststr.Contains("fox")}");
-//Console.WriteLine($"{teststr.Contains("fox", StringComparison.CurrentCultureIgnoreCase)}");
+//Parse method - attempts to parse a string to a number
+//foreach (string str in NumStrs)
+//{
+//	try
+//	{
+//		testFloat = float.Parse(str);
+//		Console.WriteLine($"Parsed number is {testFloat}");
+//        testInt = int.Parse(str);
+//        Console.WriteLine($"Parsed int is {testInt}");
+//    }
+//	catch (FormatException e)
+//	{
+//		Console.WriteLine($"Could not parse '{str}': {e.Message}");
+//	}
+//}
 
-////StartsWith and EndsWith
-//Console.WriteLine($"{teststr.StartsWith("the")}");
-//Console.WriteLine($"{teststr.StartsWith("the", StringComparison.CurrentCultureIgnoreCase)}");
+//TryParse method returns 'true' if the parse is successful
+result = int.TryParse(NumStrs[0], out testInt);
+Console.WriteLine($"{result} -- '{NumStrs[0]} : {testInt}'");
 
-//Console.WriteLine($"{teststr.EndsWith("dog")}");
-//Console.WriteLine($"{teststr.EndsWith("dog", StringComparison.CurrentCultureIgnoreCase)}");
+result = int.TryParse(NumStrs[1],out testInt);
+Console.WriteLine($"{result} -- '{NumStrs[1]} : {testInt}'");
 
-//IndexOf, LastIndexOf
-Console.WriteLine($"{teststr.IndexOf("the")}");
-//Ignoring case finds capitalised version at start of string, hence position 0 here.
-Console.WriteLine($"{teststr.IndexOf("the", 
-StringComparison.CurrentCultureIgnoreCase)}");
-Console.WriteLine($"{teststr.LastIndexOf("the")}");
+result = int.TryParse(NumStrs[2], out testInt);
+Console.WriteLine($"{result} -- '{NumStrs[2]} : {testInt}'");
 
-//Empty, null or whitespace string
-string str1 = null;
-string str2 = "   ";
-string str3 = String.Empty;
-Console.WriteLine($"{String.IsNullOrEmpty(str1)}");
-Console.WriteLine($"{String.IsNullOrEmpty(str2)}");
-Console.WriteLine($"{String.IsNullOrEmpty(str3)}");
-Console.WriteLine($"{String.IsNullOrWhiteSpace(str2)}");
-
-Console.WriteLine($"{String.Compare(str3, str2)}");
-
-//hello
+result = float.TryParse(NumStrs[3], out testFloat);
+Console.WriteLine($"{result} -- '{NumStrs[3]} : {testFloat}'");
