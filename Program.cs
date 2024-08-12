@@ -27,6 +27,7 @@ void StructOp(S theStruct)
 {
     theStruct.a = a;
     theStruct.b = true;
+    Console.WriteLine($"{theStruct.a}, {theStruct.b}");
 }
 
 //Class
