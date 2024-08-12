@@ -33,3 +33,7 @@ DateTime AprilFools = new DateTime(now.Year, 4, 1);
 DateTime NewYears = new DateTime(now.Year, 1, 1);
 TimeSpan interval = AprilFools - NewYears;
 Console.WriteLine(interval);
+
+//Dates can be compared using regular operators
+Console.WriteLine($"{NewYears < AprilFools}");
+Console.WriteLine($"{NewYears > AprilFools}");
