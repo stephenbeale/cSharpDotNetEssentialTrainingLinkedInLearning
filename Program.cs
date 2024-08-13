@@ -9,6 +9,14 @@ DateTime result = default;
 if (DateTime.TryParse(input, out result))
 {
     Console.WriteLine(result);
+
+    if(result > DateTime.Now)
+    {
+        DateTime daysElapsed = result - DateTime.Now;
+    }
+
+    DateTime daysElapsed = result - DateTime.Now;
+
 }
 else if(input.IndexOf("exit", StringComparison.OrdinalIgnoreCase) >= 0)
 {
