@@ -3,45 +3,48 @@ using System.Linq.Expressions;
 
 bool exit = false;
 
-do 
+do
 {
+    Console.WriteLine("Which date? (or 'exit')");
     string input = Console.ReadLine();
-    DateTime result = default;
 
     if (input.IndexOf("exit", StringComparison.OrdinalIgnoreCase) >= 0)
     {
-        Console.WriteLine("Invalid date input, exiting");
+        Console.WriteLine("Exiting");
         exit = true;
+        break;
     }
-    if (DateTime.TryParse(input, out result))
+    if (DateTime.TryParse(input, out DateTime result))
     {
-        Console.WriteLine(result);
+        Console.WriteLine(result);        
         bool past = DateTime.Now > result ? true : false;
-        TimeSpan interval;
-        DateTime.Compare(result, DateTime.Today);
+        TimeSpan interval = default;
+        int daysBetween = DateTime.Compare(result, DateTime.Today);        
 
         if (past)
         {
             interval = DateTime.Now - result;
-            Console.WriteLine($"{interval.Days} days have passed since that date.");
+            Console.WriteLine($"That date went by {interval.Days} ago!");
+            continue;
         }
         if (result == DateTime.Today)
         {
             Console.WriteLine("That date is today!");
+            continue;
         }
-        else
+        else if(!past)
         {
             interval = result - DateTime.Now;
-            Console.WriteLine($"{interval.Days} days until that date.");
+            Console.WriteLine($"That date is {interval.Days} days away!");
+            continue;
         }
-    }    
+    }
     else
     {
         Console.WriteLine("Invalid date input, exiting");
-    }
-    Console.WriteLine("Which date? (or 'exit')");
+    }    
 }
-while (!exit)
+while (!exit);
 
 
 
