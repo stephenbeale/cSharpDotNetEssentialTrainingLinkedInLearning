@@ -6,50 +6,42 @@ bool exit = false;
 do
 {
     Console.WriteLine("Which date? (or 'exit')");
+    
     string input = Console.ReadLine();
 
-    if (input.IndexOf("exit", StringComparison.OrdinalIgnoreCase) >= 0)
+    if(String.IsNullOrEmpty(input))
+    {
+        Console.WriteLine("Please enter a valid input.");
+        continue;
+    }
+    
+    if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
     {
         Console.WriteLine("Exiting");
-        exit = true;
         break;
     }
     if (DateTime.TryParse(input, out DateTime result))
     {
         Console.WriteLine(result);        
-        bool past = DateTime.Now > result ? true : false;
-        TimeSpan interval = default;
-        int daysBetween = DateTime.Compare(result, DateTime.Today);        
+        TimeSpan interval = result.Date - DateTime.Today;
 
-        if (past)
+        if (interval.Days < 0)
         {
             interval = DateTime.Now - result;
             Console.WriteLine($"That date went by {interval.Days} ago!");
-            continue;
         }
-        if (result == DateTime.Today)
+        else if (interval.Days == 0)
         {
-            Console.WriteLine("That date is today!");
-            continue;
+            Console.WriteLine("That date is today!");            
         }
-        else if(!past)
+        else
         {
-            interval = result - DateTime.Now;
             Console.WriteLine($"That date is {interval.Days} days away!");
-            continue;
         }
     }
     else
     {
-        Console.WriteLine("Invalid date input, exiting");
+        
     }    
 }
 while (!exit);
-
-
-
-
-
-    
-
-
