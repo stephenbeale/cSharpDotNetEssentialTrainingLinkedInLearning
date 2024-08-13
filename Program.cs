@@ -1,27 +1,20 @@
 ﻿using System;
+using System.Linq.Expressions;
 
-//Various date string formats to attempt parsing
+Console.WriteLine("Which date? (or 'exit')");
 
-string[] sampleDateTimes =
+string input = Console.ReadLine();
+DateTime result = default;
+
+if (DateTime.TryParse(input, out result))
 {
-    "January 1, 2025 9:30 AM",
-    "1/1/2025",
-    "Jan 1, 2025 7:30PM",
-    "Jan 1, 25",
-    "1/2025",
-    "1/1 7PM",
-    "Jan 1 '15",
-};
-
-foreach (string dateStr in sampleDateTimes)
+    Console.WriteLine(result);
+}
+else if(input.IndexOf("exit", StringComparison.OrdinalIgnoreCase) >= 0)
 {
-    DateTime result;
-    if (DateTime.TryParse(dateStr, out result))
-    {
-        Console.WriteLine($"{dateStr, -25} gets parsed as: {result}");        
-    }
-    else
-    {
-        Console.WriteLine($"Could not parse '{dateStr}'");
-    }
+    Console.WriteLine("Invalid date input, exiting");
+}
+else
+{
+    Console.WriteLine("Invalid date input, exiting");
 }
