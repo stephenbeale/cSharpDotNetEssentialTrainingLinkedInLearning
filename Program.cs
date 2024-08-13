@@ -18,6 +18,10 @@ foreach (string dateStr in sampleDateTimes)
     DateTime result;
     if (DateTime.TryParse(dateStr, out result))
     {
-        Console.WriteLine($"{dateStr, -25} gets parsed as: {result}");
+        Console.WriteLine($"{dateStr, -25} gets parsed as: {result}");        
+    }
+    else
+    {
+        Console.WriteLine($"Could not parse '{dateStr}'");
     }
 }
