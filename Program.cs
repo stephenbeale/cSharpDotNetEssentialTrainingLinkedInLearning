@@ -1,27 +1,50 @@
 ﻿using System;
 
-//Various date string formats to attempt parsing
+bool exit = false;
 
-string[] sampleDateTimes =
-{
-    "January 1, 2025 9:30 AM",
-    "1/1/2025",
-    "Jan 1, 2025 7:30PM",
-    "Jan 1, 25",
-    "1/2025",
-    "1/1 7PM",
-    "Jan 1 '15",
-};
+//Just playing
+Console.WriteLine($"DateTime.Now: {DateTime.Now}");
+Console.WriteLine($"DateTime.Today: {DateTime.Today}");
+Console.WriteLine($"DateOnly.FromDateTime(DateTime.Today): {DateOnly.FromDateTime(DateTime.Today)}");
 
-foreach (string dateStr in sampleDateTimes)
-{
-    DateTime result;
-    if (DateTime.TryParse(dateStr, out result))
+while (!exit) {
     {
-        Console.WriteLine($"{dateStr, -25} gets parsed as: {result}");        
-    }
-    else
-    {
-        Console.WriteLine($"Could not parse '{dateStr}'");
-    }
+        Console.WriteLine("Which date? (or 'exit')");
+        
+        string? input = Console.ReadLine();
+
+        if (String.IsNullOrWhiteSpace(input))
+        {
+            Console.WriteLine("Please enter a valid input.");
+            continue;
+        }
+
+        if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+        {
+            Console.WriteLine("Exiting");
+            break;
+        }
+        if (DateTime.TryParse(input, out DateTime result))
+        {
+            Console.WriteLine($"Parsed Date: {result.ToShortDateString()}");
+            TimeSpan interval = result.Date - DateTime.Today;
+
+            if (interval.Days < 0)
+            {
+                Console.WriteLine($"That date went by {-interval.Days} days ago!");
+            }
+            else if (interval.Days == 0)
+            {
+                Console.WriteLine("That date is today!");
+            }
+            else
+            {
+                Console.WriteLine($"That date is {interval.Days} days away!");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid date input, please try again.");
+        }
+    }    
 }
