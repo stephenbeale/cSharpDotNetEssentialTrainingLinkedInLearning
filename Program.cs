@@ -1,28 +1,52 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-Console.WriteLine("Which date? (or 'exit')");
+bool exit = false;
 
-string input = Console.ReadLine();
-DateTime result = default;
-
-if (DateTime.TryParse(input, out result))
+do 
 {
-    Console.WriteLine(result);
+    string input = Console.ReadLine();
+    DateTime result = default;
 
-    if(result > DateTime.Now)
+    if (input.IndexOf("exit", StringComparison.OrdinalIgnoreCase) >= 0)
     {
-        DateTime daysElapsed = result - DateTime.Now;
+        Console.WriteLine("Invalid date input, exiting");
+        exit = true;
     }
+    if (DateTime.TryParse(input, out result))
+    {
+        Console.WriteLine(result);
+        bool past = DateTime.Now > result ? true : false;
+        TimeSpan interval;
+        DateTime.Compare(result, DateTime.Today);
 
-    DateTime daysElapsed = result - DateTime.Now;
+        if (past)
+        {
+            interval = DateTime.Now - result;
+            Console.WriteLine($"{interval.Days} days have passed since that date.");
+        }
+        if (result == DateTime.Today)
+        {
+            Console.WriteLine("That date is today!");
+        }
+        else
+        {
+            interval = result - DateTime.Now;
+            Console.WriteLine($"{interval.Days} days until that date.");
+        }
+    }    
+    else
+    {
+        Console.WriteLine("Invalid date input, exiting");
+    }
+    Console.WriteLine("Which date? (or 'exit')");
+}
+while (!exit)
 
-}
-else if(input.IndexOf("exit", StringComparison.OrdinalIgnoreCase) >= 0)
-{
-    Console.WriteLine("Invalid date input, exiting");
-}
-else
-{
-    Console.WriteLine("Invalid date input, exiting");
-}
+
+
+
+
+    
+
+
