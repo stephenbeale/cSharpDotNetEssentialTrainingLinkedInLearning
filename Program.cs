@@ -22,5 +22,9 @@ Console.WriteLine(AprFools.ToString("D", CultureInfo.CreateSpecificCulture("de-D
 
 
 //Trying Welsh culture
-Console.WriteLine(AprFools.ToString("d", CultureInfo.CreateSpecificCulture("de-DE")));
-Console.WriteLine(AprFools.ToString("D", CultureInfo.CreateSpecificCulture("de-DE")));
+Console.WriteLine("Welsh 1");
+Console.WriteLine(AprFools.ToString("d", CultureInfo.GetCultureInfoByIetfLanguageTag("cy-CY")));
+Console.WriteLine("Welsh 2");
+Console.WriteLine(AprFools.ToString("D", CultureInfo.GetCultureInfoByIetfLanguageTag("en-CY")));
+Console.WriteLine("Welsh 3");
+Console.WriteLine(AprFools.ToString("D", CultureInfo.GetCultureInfoByIetfLanguageTag("cy-EN")));
