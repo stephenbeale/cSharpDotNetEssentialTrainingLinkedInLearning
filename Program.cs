@@ -33,3 +33,6 @@ Console.WriteLine(AprFools.ToString("D", CultureInfo.GetCultureInfoByIetfLanguag
 
 
 Console.WriteLine(AprFools.ToString("D", CultureInfo.GetCultureInfoByIetfLanguageTag("cy-EN")));
+
+Console.WriteLine("More involved Welsh formatting");
+Console.WriteLine($"{AprFools:dddd, MMMM, d yyyy}", CultureInfo.GetCultureInfoByIetfLanguageTag("cy-EN"));
