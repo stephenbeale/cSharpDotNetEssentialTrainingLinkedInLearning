@@ -9,3 +9,13 @@ Console.WriteLine($"{AprFools:d}");
 
 //Full date
 Console.WriteLine($"{AprFools:D}");
+
+Console.WriteLine($"{AprFools:f}");
+Console.WriteLine($"{AprFools:F}");
+
+Console.WriteLine($"{AprFools:g}");
+Console.WriteLine($"{AprFools:G}");
+
+//Specific culture
+Console.WriteLine(AprFools.ToString("d", CultureInfo.CreateSpecificCulture("de-DE")));
+Console.WriteLine(AprFools.ToString("D", CultureInfo.CreateSpecificCulture("de-DE")));
