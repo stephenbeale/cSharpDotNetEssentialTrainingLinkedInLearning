@@ -10,7 +10,8 @@ if(!File.Exists(filename))
     File.WriteAllText(filename, "This is a text file.");    
 }
 
-//2
+//2 Append text to the file - useful for as we go
+File.AppendAllText(filename, "This text gets appended to the file.");
 
 //3
 
