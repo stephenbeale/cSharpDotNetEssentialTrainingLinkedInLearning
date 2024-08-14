@@ -1,28 +1,17 @@
-﻿//Creating and deleting files
+﻿//Reading and writing files
 
-const string fileName = "TestFile.txt";
+//Make sure example file exists
 
-//Create new file - overwrites any existing
+const string filename = "TestFile.txt"; ;
 
-//using(StreamWriter sw = new StreamWriter(fileName))
-//{
-//    sw.WriteLine("This is a text file.");
-//}
-
-//Creates a file if it exist, deletes it otherwise
-
-Console.WriteLine(File.Exists(fileName));
-
-if(File.Exists(fileName))
+//1 WriteAllText - overwrites a file with given content
+if(!File.Exists(filename))
 {
-    File.Delete(fileName);
-}
-else
-{
-    using(StreamWriter sw = File.CreateText(fileName))
-    {
-        sw.WriteLine("This is a text file.");
-    }
+    return;
 }
 
-Console.WriteLine(File.Exists(fileName));
+//2
+
+//3
+
+//4
