@@ -2,53 +2,60 @@
 
 //Make sure example file exists
 
-const string filename = "TestFile.txt"; ;
+//const string filename = "TestFile.txt"; ;
 
-//1 WriteAllText - overwrites a file with given content
-if(!File.Exists(filename))
-{
-    File.WriteAllText(filename, "This is a text file.");
-}
+////1 WriteAllText - overwrites a file with given content
+//if(!File.Exists(filename))
+//{
+//    File.WriteAllText(filename, "This is a text file.");
+//}
 
-//2 Append text to an existing file - useful for as we go
-File.AppendAllText(filename, "This text gets appended to the file.");
+////2 Append text to an existing file - useful for as we go
+//File.AppendAllText(filename, "This text gets appended to the file.");
 
-//3 FileStream to open, write to file until stream is closed
+////3 FileStream to open, write to file until stream is closed
 
-using (StreamWriter sw = File.AppendText(filename))
-{
-    sw.WriteLine("\nLine1");
-    sw.WriteLine("Line2");
-    sw.WriteLine("Line3");
-}
+//using (StreamWriter sw = File.AppendText(filename))
+//{
+//    sw.WriteLine("\nLine1");
+//    sw.WriteLine("Line2");
+//    sw.WriteLine("Line3");
+//}
 
-//4 Read all text reads all the content from a file
+////4 Read all text reads all the content from a file
 
-string content = File.ReadAllText(filename);
-Console.WriteLine(content);
+//string content = File.ReadAllText(filename);
+//Console.WriteLine(content);
 
-await stevesTest();
+stevesTest();
 
 
-static async Task stevesTest()
-{
-    const string stevesFilename = "Stevesfile.txt";
-
-    if (!File.Exists(stevesFilename))
+static void stevesTest()
+{    
+    try
     {
-        string[] strs = { "my", "name", "is", "steve" };
-        await File.AppendAllTextAsync(filename, "Wow");
-        using (StreamWriter sw = File.AppendText($"{stevesFilename}"))
-        foreach (var str in strs)
+        const string stevesFilename = "Stevesfile.txt";
+        
+        using (FileStream fs = File.Create(stevesFilename))
         {
-            sw.WriteLine(str);
+            string[] strs = { "my", "name", "is", "steve" };
+            using StreamWriter sw = File.CreateText(stevesFilename);
+            foreach (var str in strs)
+            {
+                sw.WriteLine(str);
+            }
+        }
+
+        //Read contents of file
+        using (StreamReader sr = File.OpenText(stevesFilename))
+        {
+            string textCont = sr.ReadToEnd();
+            Console.WriteLine(textCont);            
         }
     }
-
-    using (StreamReader sr = File.OpenText(stevesFilename))
+    catch (Exception e)
     {
-        string textCont = sr.ReadToEnd();
-        Console.WriteLine(textCont);
+        Console.WriteLine($"Exception: {e.Message}");
     }
 }
 
