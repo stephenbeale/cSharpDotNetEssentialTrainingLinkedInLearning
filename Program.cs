@@ -1,28 +1,59 @@
-﻿//Creating and deleting files
+﻿//Reading and writing files
 
-const string fileName = "TestFile.txt";
+//Make sure example file exists
 
-//Create new file - overwrites any existing
+//const string filename = "TestFile.txt"; ;
 
-//using(StreamWriter sw = new StreamWriter(fileName))
+////1 WriteAllText - overwrites a file with given content
+//if(!File.Exists(filename))
 //{
-//    sw.WriteLine("This is a text file.");
+//    File.WriteAllText(filename, "This is a text file.");
 //}
 
-//Creates a file if it exist, deletes it otherwise
+////2 Append text to an existing file - useful for as we go
+//File.AppendAllText(filename, "This text gets appended to the file.");
 
-Console.WriteLine(File.Exists(fileName));
+////3 FileStream to open, write to file until stream is closed
 
-if(File.Exists(fileName))
-{
-    File.Delete(fileName);
-}
-else
-{
-    using(StreamWriter sw = File.CreateText(fileName))
+//using (StreamWriter sw = File.AppendText(filename))
+//{
+//    sw.WriteLine("\nLine1");
+//    sw.WriteLine("Line2");
+//    sw.WriteLine("Line3");
+//}
+
+////4 Read all text reads all the content from a file
+
+//string content = File.ReadAllText(filename);
+//Console.WriteLine(content);
+
+stevesTest();
+
+
+static void stevesTest()
+{    
+    try
     {
-        sw.WriteLine("This is a text file.");
+        const string stevesFilename = "Stevesfile.txt";
+        string[] strs = { "my", "name", "is", "steve" };
+        //Creates file AND adds text
+        using StreamWriter sw = File.CreateText(stevesFilename);
+        foreach (var str in strs)
+        {
+            sw.WriteLine(str);
+        }        
+        //Read contents of file
+        using (StreamReader sr = File.OpenText(stevesFilename))
+        {
+            string textCont = sr.ReadToEnd();
+            Console.WriteLine(textCont);            
+        }
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Exception: {e.Message}");
     }
 }
 
-Console.WriteLine(File.Exists(fileName));
+
+
