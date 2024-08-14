@@ -4,10 +4,10 @@ const string fileName = "TestFile.txt";
 
 //Create new file - overwrites any existing
 
-using(StreamWriter sw = new StreamWriter(fileName))
-{
-    sw.WriteLine("This is a text file.");
-}
+//using(StreamWriter sw = new StreamWriter(fileName))
+//{
+//    sw.WriteLine("This is a text file.");
+//}
 
 //Creates a file if it exist, deletes it otherwise
 
