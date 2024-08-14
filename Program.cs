@@ -35,17 +35,13 @@ static void stevesTest()
     try
     {
         const string stevesFilename = "Stevesfile.txt";
-        
-        using (FileStream fs = File.Create(stevesFilename))
+        string[] strs = { "my", "name", "is", "steve" };
+        //Creates file AND adds text
+        using StreamWriter sw = File.CreateText(stevesFilename);
+        foreach (var str in strs)
         {
-            string[] strs = { "my", "name", "is", "steve" };
-            using StreamWriter sw = File.CreateText(stevesFilename);
-            foreach (var str in strs)
-            {
-                sw.WriteLine(str);
-            }
-        }
-
+            sw.WriteLine(str);
+        }        
         //Read contents of file
         using (StreamReader sr = File.OpenText(stevesFilename))
         {
