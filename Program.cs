@@ -7,7 +7,7 @@ const string filename = "TestFile.txt"; ;
 //1 WriteAllText - overwrites a file with given content
 if(!File.Exists(filename))
 {
-    File.WriteAllText(filename, "This is a text file.");    
+    File.WriteAllText(filename, "This is a text file.");
 }
 
 //2 Append text to an existing file - useful for as we go
@@ -17,7 +17,7 @@ File.AppendAllText(filename, "This text gets appended to the file.");
 
 using (StreamWriter sw = File.AppendText(filename))
 {
-    sw.WriteLine("Line1");
+    sw.WriteLine("\nLine1");
     sw.WriteLine("Line2");
     sw.WriteLine("Line3");
 }
@@ -26,6 +26,5 @@ using (StreamWriter sw = File.AppendText(filename))
 
 //5 Read all text reads all the content from a file
 
-string content;
-content = File.ReadAllText(filename);
+string content = File.ReadAllText(filename);
 Console.WriteLine(content);
