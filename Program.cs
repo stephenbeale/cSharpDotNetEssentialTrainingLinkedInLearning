@@ -10,10 +10,17 @@ if(!File.Exists(filename))
     File.WriteAllText(filename, "This is a text file.");    
 }
 
-//2 Append text to the file - useful for as we go
+//2 Append text to an existing file - useful for as we go
 File.AppendAllText(filename, "This text gets appended to the file.");
 
-//3
+//3 FileStream to open, write to file until stream is closed
+
+using (StreamWriter sw = File.AppendText(filename))
+{
+    sw.WriteLine("Line1");
+    sw.WriteLine("Line2");
+    sw.WriteLine("Line3");
+}
 
 //4 
 
