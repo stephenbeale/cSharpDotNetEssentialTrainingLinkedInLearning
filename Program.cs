@@ -1,50 +1,28 @@
-﻿using System;
+﻿//Creating and deleting files
 
-bool exit = false;
+const string fileName = "TestFile.txt";
 
-//Just playing
-Console.WriteLine($"DateTime.Now: {DateTime.Now}");
-Console.WriteLine($"DateTime.Today: {DateTime.Today}");
-Console.WriteLine($"DateOnly.FromDateTime(DateTime.Today): {DateOnly.FromDateTime(DateTime.Today)}");
+//Create new file - overwrites any existing
 
-while (!exit) {
-    {
-        Console.WriteLine("Which date? (or 'exit')");
-        
-        string? input = Console.ReadLine();
+//using(StreamWriter sw = new StreamWriter(fileName))
+//{
+//    sw.WriteLine("This is a text file.");
+//}
 
-        if (String.IsNullOrWhiteSpace(input))
-        {
-            Console.WriteLine("Please enter a valid input.");
-            continue;
-        }
+//Creates a file if it exist, deletes it otherwise
 
-        if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
-        {
-            Console.WriteLine("Exiting");
-            break;
-        }
-        if (DateTime.TryParse(input, out DateTime result))
-        {
-            Console.WriteLine($"Parsed Date: {result.ToShortDateString()}");
-            TimeSpan interval = result.Date - DateTime.Today;
+Console.WriteLine(File.Exists(fileName));
 
-            if (interval.Days < 0)
-            {
-                Console.WriteLine($"That date went by {-interval.Days} days ago!");
-            }
-            else if (interval.Days == 0)
-            {
-                Console.WriteLine("That date is today!");
-            }
-            else
-            {
-                Console.WriteLine($"That date is {interval.Days} days away!");
-            }
-        }
-        else
-        {
-            Console.WriteLine("Invalid date input, please try again.");
-        }
-    }    
+if(File.Exists(fileName))
+{
+    File.Delete(fileName);
 }
+else
+{
+    using(StreamWriter sw = File.CreateText(fileName))
+    {
+        sw.WriteLine("This is a text file.");
+    }
+}
+
+Console.WriteLine(File.Exists(fileName));
