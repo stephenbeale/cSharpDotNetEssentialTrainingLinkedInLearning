@@ -2,3 +2,16 @@ This text gets appended to the file.
 Line1
 Line2
 Line3
+This text gets appended to the file.
+Line1
+Line2
+Line3
+WowThis text gets appended to the file.
+Line1
+Line2
+Line3
+This text gets appended to the file.
+Line1
+Line2
+Line3
+Wow

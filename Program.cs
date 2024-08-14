@@ -22,9 +22,35 @@ using (StreamWriter sw = File.AppendText(filename))
     sw.WriteLine("Line3");
 }
 
-//4 
-
-//5 Read all text reads all the content from a file
+//4 Read all text reads all the content from a file
 
 string content = File.ReadAllText(filename);
 Console.WriteLine(content);
+
+await stevesTest();
+
+
+static async Task stevesTest()
+{
+    const string stevesFilename = "Stevesfile.txt";
+
+    if (!File.Exists(stevesFilename))
+    {
+        string[] strs = { "my", "name", "is", "steve" };
+        await File.AppendAllTextAsync(filename, "Wow");
+        using (StreamWriter sw = File.AppendText($"{stevesFilename}"))
+        foreach (var str in strs)
+        {
+            sw.WriteLine(str);
+        }
+    }
+
+    using (StreamReader sr = File.OpenText(stevesFilename))
+    {
+        string textCont = sr.ReadToEnd();
+        Console.WriteLine(textCont);
+    }
+}
+
+
+
