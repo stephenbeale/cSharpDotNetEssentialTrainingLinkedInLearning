@@ -60,8 +60,19 @@ Console.WriteLine($"DI full name: {di.FullName}");
 Console.WriteLine($"DI creation time: {di.CreationTime}");
 
 
-//Enumerate contents of directories
 
-//
+
+//Enumerate contents of directories only
+try
+{
+    string curPath = Directory.GetCurrentDirectory();
+    List<string> listDirs = new List<string>(Directory.EnumerateDirectories(curPath));
+
+}
+catch (Exception e)
+{
+    Console.WriteLine(e.Message);
+}
+
 //Creating and deleting directories
 
