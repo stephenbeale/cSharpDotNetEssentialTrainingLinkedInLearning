@@ -28,16 +28,21 @@ Console.WriteLine(Path.GetDirectoryName(dir));
 //Get info about a directory
 try
 {
-    Console.WriteLine($"Directory files: {Directory.GetFileSystemEntries(basepath)}");    
-    Console.WriteLine($"Directory parent of {dir}: {Directory.GetParent(dir)}");
+    Console.WriteLine($"File system entries: for {basepath}\n");
+    string[] fileSystemEntries = Directory.GetFileSystemEntries(basepath);
+    foreach (string fileSystemEntry in fileSystemEntries)
+    {
+        Console.WriteLine(fileSystemEntry);
+    }    
+    Console.WriteLine($"\nDirectory parent of {dir}: {Directory.GetParent(dir)}");
     Console.WriteLine($"Directory creation time of {dir} : {Directory.GetCreationTime(dir)}");
     Console.WriteLine($"Directory root of {dir} : {Directory.GetDirectoryRoot(dir)}");
     Console.WriteLine($"\nDirectory files in base path of {basepath}: \n");
     string[] files = Directory.GetFiles(basepath);    
     foreach (var file in files)
     {
-        Console.WriteLine($"{file}");        
-        Console.WriteLine($"Path file name: {Path.GetFileName(file)}");
+        //Console.WriteLine($"{file}");        
+        Console.WriteLine($"Path.GetFileName: {Path.GetFileName(file)}");
     }
 }
 catch (Exception e)
