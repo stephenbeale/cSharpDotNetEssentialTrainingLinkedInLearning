@@ -11,3 +11,8 @@ if (!File.Exists(filename))
         sw.WriteLine("This is a text file.");
     }
 }
+
+Console.WriteLine(File.GetCreationTime(filename));
+Console.WriteLine(File.GetLastWriteTime(filename)); Console.WriteLine(File.GetLastAccessTime(filename));
+
+File.SetAttributes(filename, FileAttributes.ReadOnly);
