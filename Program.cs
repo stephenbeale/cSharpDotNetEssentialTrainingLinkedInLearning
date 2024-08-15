@@ -2,6 +2,8 @@
 
 //Create directory if it doesn't exist
 
+using System.IO;
+
 const string dir = "StevesDirectory";
 
 string basepath = "W:\\cSharpDotNetEssentialTrainingLinkedInLearning\\";
@@ -60,8 +62,44 @@ Console.WriteLine($"DI full name: {di.FullName}");
 Console.WriteLine($"DI creation time: {di.CreationTime}");
 
 
-//Enumerate contents of directories
 
-//
+
+//Enumerate contents of directories only
+try
+{
+    Console.WriteLine("\nEnumeration tasks:\n");
+    string curPath = Directory.GetCurrentDirectory();
+    
+    //List<string> listDirs = new List<string>(Directory.EnumerateDirectories(curPath));
+    List<string> listDirs = new List<string>(Directory.EnumerateDirectories(basepath));
+
+    foreach (string directory in listDirs)
+    {
+        Console.WriteLine($"Enumerating over directories: {directory}");
+    }
+    Console.WriteLine("");
+
+    List<string> listFiles = new List<string>(Directory.EnumerateFiles(curPath));
+
+    foreach (string fileN in listDirs)
+    {
+        Console.WriteLine($"Enumerating over files: {fileN}");
+    }
+    Console.WriteLine("");
+
+    List<string> listEverything = new List<string>(Directory.EnumerateFiles(curPath));
+
+    foreach (string sysEnt in listDirs)
+    {
+        Console.WriteLine($"Enumerating over system entries: {sysEnt}");
+    }
+    Console.WriteLine("");
+
+}
+catch (Exception e)
+{
+    Console.WriteLine($"Failed on enumeration task: {e.Message}");
+}
+
 //Creating and deleting directories
 
