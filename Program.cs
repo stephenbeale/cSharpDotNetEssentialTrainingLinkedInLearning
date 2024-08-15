@@ -29,14 +29,21 @@ if (!File.Exists(filename))
 
 //Get general file info
 
-try
-{
-	FileInfo fi = new FileInfo(filename);
-	Console.WriteLine($"File length: {fi.Length}");
-    Console.WriteLine($"File directory: {fi.Directory}"); 
-	Console.WriteLine($"File is read-only: {fi.IsReadOnly}");
-}
-catch (Exception e)
-{
-	Console.WriteLine(e.Message);
-}
+//try
+//{
+//	FileInfo fi = new FileInfo(filename);
+//	Console.WriteLine($"File length: {fi.Length}");
+//    Console.WriteLine($"File directory: {fi.Directory}"); 
+//	Console.WriteLine($"File is read-only: {fi.IsReadOnly}");
+//}
+//catch (Exception e)
+//{
+//	Console.WriteLine(e.Message);
+//}
+
+//Manipulate file information
+
+DateTime dt = new DateTime(2020, 7, 1);
+File.SetCreationTime(filename, dt);
+
+Console.WriteLine(File.GetCreationTime(filename));
