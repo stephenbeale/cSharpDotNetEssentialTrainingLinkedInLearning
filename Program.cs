@@ -51,3 +51,16 @@ Console.WriteLine($"File's new creation time: {File.GetCreationTime(filename)}")
 //Mine
 File.SetLastAccessTime(filename, (new DateTime(2020, 1, 12, 19, 45, 03)));
 Console.WriteLine($"File's new last access time: {File.GetLastAccessTime(filename)}");
+
+//Should copy?
+const string filename2 = "myCopiedFile.txt";
+File.Copy(filename, filename2);
+
+Console.WriteLine($"Creation time of {filename2}: {File.GetCreationTime(filename2)}");
+
+Console.WriteLine("Moving a file");
+File.Move(filename, "movedFile.txt");
+
+File.SetCreationTime(filename2, (new DateTime(1787, 9, 23, 15, 04, 42, 38)));
+Console.WriteLine($"Modified creation time for {filename2}: {File.GetCreationTime(filename2)}");
+
