@@ -21,3 +21,7 @@ Console.WriteLine(File.GetLastWriteTime(filename)); Console.WriteLine(File.GetLa
 File.SetAttributes(filename, FileAttributes.ReadOnly);
 Console.WriteLine(File.GetAttributes(filename));
 
+//My playing
+File.SetAttributes(filename, FileAttributes.IntegrityStream);
+
+Console.WriteLine(File.GetAttributes(filename));
