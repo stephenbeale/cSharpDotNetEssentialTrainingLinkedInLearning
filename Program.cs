@@ -50,6 +50,15 @@ catch (Exception e)
     Console.WriteLine(e.Message);
 }
 
+//From video
+
+DirectoryInfo di = new DirectoryInfo(basepath);
+Console.WriteLine($"\n\nUsing Directory Info class and object for {basepath}");
+Console.WriteLine($"DI name: {di.Name}");
+Console.WriteLine($"DI parent: {di.Parent}");
+Console.WriteLine($"DI full name: {di.FullName}");
+Console.WriteLine($"DI creation time: {di.CreationTime}");
+
 
 //Enumerate contents of directories
 
