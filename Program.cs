@@ -12,7 +12,12 @@ if (!File.Exists(filename))
     }
 }
 
+//Get details about the files
+
 Console.WriteLine(File.GetCreationTime(filename));
 Console.WriteLine(File.GetLastWriteTime(filename)); Console.WriteLine(File.GetLastAccessTime(filename));
 
+//Make file read-only and print attributes
 File.SetAttributes(filename, FileAttributes.ReadOnly);
+Console.WriteLine(File.GetAttributes(filename));
+
