@@ -46,4 +46,8 @@ if (!File.Exists(filename))
 DateTime dt = new DateTime(2020, 7, 1);
 File.SetCreationTime(filename, dt);
 
-Console.WriteLine(File.GetCreationTime(filename));
+Console.WriteLine($"File's new creation time: {File.GetCreationTime(filename)}");
+
+//Mine
+File.SetLastAccessTime(filename, (new DateTime(2020, 1, 12, 19, 45, 03)));
+Console.WriteLine($"File's new last access time: {File.GetLastAccessTime(filename)}");
