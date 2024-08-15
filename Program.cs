@@ -69,19 +69,23 @@ try
 {
     Console.WriteLine("\nEnumeration tasks:\n");
     string curPath = Directory.GetCurrentDirectory();
-    List<string> listDirs = new List<string>(Directory.EnumerateDirectories(curPath));
+    
+    //List<string> listDirs = new List<string>(Directory.EnumerateDirectories(curPath));
+    List<string> listDirs = new List<string>(Directory.EnumerateDirectories(basepath));
 
     foreach (string directory in listDirs)
     {
         Console.WriteLine($"Enumerating over directories: {directory}");
     }
-    
+    Console.WriteLine("");
+
     List<string> listFiles = new List<string>(Directory.EnumerateFiles(curPath));
 
     foreach (string fileN in listDirs)
     {
         Console.WriteLine($"Enumerating over files: {fileN}");
     }
+    Console.WriteLine("");
 
     List<string> listEverything = new List<string>(Directory.EnumerateFiles(curPath));
 
@@ -89,6 +93,7 @@ try
     {
         Console.WriteLine($"Enumerating over system entries: {sysEnt}");
     }
+    Console.WriteLine("");
 
 }
 catch (Exception e)
