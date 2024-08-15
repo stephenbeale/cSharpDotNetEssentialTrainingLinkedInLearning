@@ -1,66 +1,67 @@
-﻿//Working with file information
+﻿//Working with directories
 
-//Make sure the example file exists
+//Create directory if it doesn't exist
 
-const string filename = "TestFile.txt";
+const string dir = "StevesDirectory";
 
-if (!File.Exists(filename))
+string basepath = "W:\\cSharpDotNetEssentialTrainingLinkedInLearning\\";
+
+string fullPath = Path.Combine(basepath, dir);
+
+Console.WriteLine(fullPath);
+
+if (!Directory.Exists(dir))
 {
-    using (StreamWriter sw = File.CreateText(filename))
-    {
-        sw.WriteLine("This is a text file.");
-    }
+    Console.WriteLine(basepath);
+    Console.WriteLine($"Create directory with name: {dir} on path {fullPath}");
+    Directory.CreateDirectory(dir);
+    //Directory.CreateDirectory(fullPath);
+}
+else
+{
+    Directory.Delete(dir);
 }
 
-//Get details about the files
+//Get path for current directory
+Console.WriteLine(Path.GetDirectoryName(dir));
 
-//Console.WriteLine(File.GetCreationTime(filename));
-//Console.WriteLine(File.GetLastWriteTime(filename)); Console.WriteLine(File.GetLastAccessTime(filename));
+//Get info about a directory
+try
+{
+    Console.WriteLine($"File system entries: for {basepath}\n");
+    string[] fileSystemEntries = Directory.GetFileSystemEntries(basepath);
+    foreach (string fileSystemEntry in fileSystemEntries)
+    {
+        Console.WriteLine(fileSystemEntry);
+    }    
+    Console.WriteLine($"\nDirectory parent of {dir}: {Directory.GetParent(dir)}");
+    Console.WriteLine($"Directory creation time of {dir} : {Directory.GetCreationTime(dir)}");
+    Console.WriteLine($"Directory root of {dir} : {Directory.GetDirectoryRoot(dir)}");
+    Console.WriteLine($"\nDirectory files in base path of {basepath}: \n");
+    string[] files = Directory.GetFiles(basepath);    
+    foreach (var file in files)
+    {
+        //Console.WriteLine($"{file}");        
+        Console.WriteLine($"Path.GetFileName: {Path.GetFileName(file)}");
+    }
+}
+catch (Exception e)
+{
+    Console.WriteLine(e.Message);
+}
 
-//Make file read-only and print attributes
-//File.SetAttributes(filename, FileAttributes.ReadOnly);
-//Console.WriteLine(File.GetAttributes(filename));
+//From video
 
-////My playing
-//File.SetAttributes(filename, FileAttributes.IntegrityStream);
+DirectoryInfo di = new DirectoryInfo(basepath);
+Console.WriteLine($"\n\nUsing Directory Info class and object for {basepath}");
+Console.WriteLine($"DI name: {di.Name}");
+Console.WriteLine($"DI parent: {di.Parent}");
+Console.WriteLine($"DI full name: {di.FullName}");
+Console.WriteLine($"DI creation time: {di.CreationTime}");
 
-//Console.WriteLine(File.GetAttributes(filename));
 
+//Enumerate contents of directories
 
-//Get general file info
-
-//try
-//{
-//	FileInfo fi = new FileInfo(filename);
-//	Console.WriteLine($"File length: {fi.Length}");
-//    Console.WriteLine($"File directory: {fi.Directory}"); 
-//	Console.WriteLine($"File is read-only: {fi.IsReadOnly}");
-//}
-//catch (Exception e)
-//{
-//	Console.WriteLine(e.Message);
-//}
-
-//Manipulate file information
-
-DateTime dt = new DateTime(2020, 7, 1);
-File.SetCreationTime(filename, dt);
-
-Console.WriteLine($"File's new creation time: {File.GetCreationTime(filename)}");
-
-//Mine
-File.SetLastAccessTime(filename, (new DateTime(2020, 1, 12, 19, 45, 03)));
-Console.WriteLine($"File's new last access time: {File.GetLastAccessTime(filename)}");
-
-//Should copy?
-const string filename2 = "myCopiedFile.txt";
-File.Copy(filename, filename2);
-
-Console.WriteLine($"Creation time of {filename2}: {File.GetCreationTime(filename2)}");
-
-Console.WriteLine("Moving a file");
-File.Move(filename, "movedFile.txt");
-
-File.SetCreationTime(filename2, (new DateTime(1787, 9, 23, 15, 04, 42, 38)));
-Console.WriteLine($"Modified creation time for {filename2}: {File.GetCreationTime(filename2)}");
+//
+//Creating and deleting directories
 
