@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 const string chaFilDir = "StevesDirectory";
 const string rootDirPath = "W:\\cSharpDotNetEssentialTrainingLinkedInLearning";
 const string wordExt = ".doc";
-const string excelExt = ".xslx";
+const string excelExt = ".xlsx";
 const string pptExt = ".ppt";
 
 string basePath = Directory.GetCurrentDirectory();
@@ -21,7 +21,7 @@ try
 {
     if (Directory.Exists(fullPath))
     {
-        string[] files = Directory.GetFiles(fullPath);                
+        var files = Directory.GetFiles(fullPath);                
 
         int wordFileCount = 0;
         int excelFileCount = 0;
@@ -43,34 +43,19 @@ try
             {
                 wordFileCount++;
                 wordFileSize += fileSize;
-                dirFileSize+= fileSize;
-                continue;
             }               
             else if (fileExtension.Contains(excelExt))
             {
                 excelFileCount++;
-                excelFileSize += fileSize;
-                dirFileSize += fileSize;
-                continue;
+                excelFileSize += fileSize;                
             }
             else if (fileExtension.Contains(pptExt))
             {
                 powerpointFileCount++;
                 powerpointFileSize += fileSize;
-                dirFileSize += fileSize;
-                continue;
             }
+            dirFileSize += fileSize;
         }
-
-        /*
- * Results
- * with bulleted list of 
- * Total files
- * Excel files: #
- * Word files: #
- * PPT files: #
- * ----
- */
 
         Console.WriteLine($"Total files in directory: {files.Length}");
         Console.WriteLine($"Word files: {wordFileCount}");
@@ -78,17 +63,8 @@ try
         Console.WriteLine($"PowerPoint files: {powerpointFileCount}");
         Console.WriteLine("-----------");
 
-        /*
- * Total size of all files
- * Excel size:
- * Word size:
- * PPT size: 
- */
-
-        //Should also run for any newly added files
-
         Console.WriteLine($"Total File Size in directory: {dirFileSize}");
-        Console.WriteLine($"Total File Size of Word files: {wordFileSize}");
+        Console.WriteLine($"Total File Size of Word files:' {wordFileSize}");
         Console.WriteLine($"Total File Size of Excel files: {excelFileSize}");
         Console.WriteLine($"Total File Size of PowerPoint files: {powerpointFileSize}");
     }
