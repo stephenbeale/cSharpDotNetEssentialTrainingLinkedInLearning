@@ -1,85 +1,31 @@
 ﻿//Look in a given directory
 
-using System.ComponentModel.Design;
-using System.Linq.Expressions;
+var folder = "StevesDirectory";
+var resultsFile = "results.txt";
 
-const string chaFilDir = "StevesDirectory";
-const string rootDirPath = "W:\\cSharpDotNetEssentialTrainingLinkedInLearning";
-const string wordExt = ".doc";
-const string excelExt = ".xlsx";
-const string pptExt = ".ppt";
-string[] exts = {wordExt, excelExt, pptExt};
+//Variables to ohld results
+long XLSCount = 0, DOCCount = 0, PPTCount = 0;
+long XLSSize = 0, DOCSize = 0, PPTSize = 0;
+long totalFiles = 0, totalSize = 0;
 
-string basePath = Directory.GetCurrentDirectory();
 
-string fullPath = Path.Combine(rootDirPath, chaFilDir);
+bool isOfficeFile(string fileName)
+{
+    if(fileName.EndsWith(".xslx") || fileName.EndsWith(".docx") || fileName.EndsWith(".pptx"))
+    {
+        return true;
+    }
+    return false;
+}
 
-Directory.CreateDirectory(fullPath);
+
 
 //Analyse file contents
 
 //Print out
 try
 {
-    if (Directory.Exists(fullPath))
-    {
-        
-        var files = Directory.GetFiles(fullPath);                
 
-        foreach (var ext in exts)
-        {
-            files.Where(file => Path.GetExtension(file).ToLower().Contains(ext));
-        }
-        
-        var wordFiles = files.Where(file => Path.GetExtension(file).ToLower().Contains(wordExt));
-        var excelFiles = files.Where(file => Path.GetExtension(file).ToLower().Contains(excelExt));
-        var pptFiles = files.Where(file => Path.GetExtension(file).ToLower().Contains(pptExt));
-
-        var wordFileCount = wordFiles.Count();
-        var excelFileCount = excelFiles.Count();
-        var powerpointFileCount = pptFiles.Count();
-
-        var wordFileSize = wordFiles.Sum(file => new FileInfo(file).Length);
-        var excelFileSize = wordFiles.Sum(file => new FileInfo(file).Length);
-        var powerpointFileSize = wordFiles.Sum(file => new FileInfo(file).Length);
-        var dirFileSize = wordFiles.Sum(file => new FileInfo(file).Length);
-
-        foreach (string file in files)
-        {
-            FileInfo fileInfo = new FileInfo(file);
-            var fileSize = fileInfo.Length;
-
-            var fileExtension = Path.GetExtension(file).ToLower();
-
-            if (fileExtension.Contains(wordExt))
-            {
-                wordFileCount++;
-                wordFileSize += fileSize;
-            }               
-            else if (fileExtension.Contains(excelExt))
-            {
-                excelFileCount++;
-                excelFileSize += fileSize;                
-            }
-            else if (fileExtension.Contains(pptExt))
-            {
-                powerpointFileCount++;
-                powerpointFileSize += fileSize;
-            }
-            dirFileSize += fileSize;
-        }
-
-        Console.WriteLine($"Total files in directory: {files.Length}");
-        Console.WriteLine($"Word files: {wordFileCount}");
-        Console.WriteLine($"Excel files: {excelFileCount}");
-        Console.WriteLine($"PowerPoint files: {powerpointFileCount}");
-        Console.WriteLine("-----------");
-
-        Console.WriteLine($"Total File Size in directory: {dirFileSize}");
-        Console.WriteLine($"Total File Size of Word files:' {wordFileSize}");
-        Console.WriteLine($"Total File Size of Excel files: {excelFileSize}");
-        Console.WriteLine($"Total File Size of PowerPoint files: {powerpointFileSize}");
-    }
 }
 
 catch (Exception e)
