@@ -1,105 +1,88 @@
-﻿//Working with directories
+﻿//Look in a given directory
 
-//Create directory if it doesn't exist
+using System.ComponentModel.Design;
+using System.Linq.Expressions;
 
-using System.IO;
+const string chaFilDir = "StevesDirectory";
+const string rootDirPath = "W:\\cSharpDotNetEssentialTrainingLinkedInLearning";
+const string wordExt = ".doc";
+const string excelExt = ".xlsx";
+const string pptExt = ".ppt";
+string[] exts = {wordExt, excelExt, pptExt};
 
-const string dir = "StevesDirectory";
+string basePath = Directory.GetCurrentDirectory();
 
-string basepath = "W:\\cSharpDotNetEssentialTrainingLinkedInLearning\\";
+string fullPath = Path.Combine(rootDirPath, chaFilDir);
 
-string fullPath = Path.Combine(basepath, dir);
+Directory.CreateDirectory(fullPath);
 
-Console.WriteLine(fullPath);
+//Analyse file contents
 
-if (!Directory.Exists(dir))
-{
-    Console.WriteLine(basepath);
-    Console.WriteLine($"Create directory with name: {dir} on path {fullPath}");
-    Directory.CreateDirectory(dir);
-    //Directory.CreateDirectory(fullPath);
-}
-else
-{
-    Directory.Delete(dir);
-}
-
-//Get path for current directory
-Console.WriteLine(Path.GetDirectoryName(dir));
-
-//Get info about a directory
+//Print out
 try
 {
-    Console.WriteLine($"File system entries: for {basepath}\n");
-    string[] fileSystemEntries = Directory.GetFileSystemEntries(basepath);
-    foreach (string fileSystemEntry in fileSystemEntries)
+    if (Directory.Exists(fullPath))
     {
-        Console.WriteLine(fileSystemEntry);
-    }    
-    Console.WriteLine($"\nDirectory parent of {dir}: {Directory.GetParent(dir)}");
-    Console.WriteLine($"Directory creation time of {dir} : {Directory.GetCreationTime(dir)}");
-    Console.WriteLine($"Directory root of {dir} : {Directory.GetDirectoryRoot(dir)}");
-    Console.WriteLine($"\nDirectory files in base path of {basepath}: \n");
-    string[] files = Directory.GetFiles(basepath);    
-    foreach (var file in files)
-    {
-        //Console.WriteLine($"{file}");        
-        Console.WriteLine($"Path.GetFileName: {Path.GetFileName(file)}");
+        
+        var files = Directory.GetFiles(fullPath);                
+
+        foreach (var ext in exts)
+        {
+            files.Where(file => Path.GetExtension(file).ToLower().Contains(ext));
+        }
+        
+        var wordFiles = files.Where(file => Path.GetExtension(file).ToLower().Contains(wordExt));
+        var excelFiles = files.Where(file => Path.GetExtension(file).ToLower().Contains(excelExt));
+        var pptFiles = files.Where(file => Path.GetExtension(file).ToLower().Contains(pptExt));
+
+        var wordFileCount = wordFiles.Count();
+        var excelFileCount = excelFiles.Count();
+        var powerpointFileCount = pptFiles.Count();
+
+        var wordFileSize = wordFiles.Sum(file => new FileInfo(file).Length);
+        var excelFileSize = wordFiles.Sum(file => new FileInfo(file).Length);
+        var powerpointFileSize = wordFiles.Sum(file => new FileInfo(file).Length);
+        var dirFileSize = wordFiles.Sum(file => new FileInfo(file).Length);
+
+        foreach (string file in files)
+        {
+            FileInfo fileInfo = new FileInfo(file);
+            var fileSize = fileInfo.Length;
+
+            var fileExtension = Path.GetExtension(file).ToLower();
+
+            if (fileExtension.Contains(wordExt))
+            {
+                wordFileCount++;
+                wordFileSize += fileSize;
+            }               
+            else if (fileExtension.Contains(excelExt))
+            {
+                excelFileCount++;
+                excelFileSize += fileSize;                
+            }
+            else if (fileExtension.Contains(pptExt))
+            {
+                powerpointFileCount++;
+                powerpointFileSize += fileSize;
+            }
+            dirFileSize += fileSize;
+        }
+
+        Console.WriteLine($"Total files in directory: {files.Length}");
+        Console.WriteLine($"Word files: {wordFileCount}");
+        Console.WriteLine($"Excel files: {excelFileCount}");
+        Console.WriteLine($"PowerPoint files: {powerpointFileCount}");
+        Console.WriteLine("-----------");
+
+        Console.WriteLine($"Total File Size in directory: {dirFileSize}");
+        Console.WriteLine($"Total File Size of Word files:' {wordFileSize}");
+        Console.WriteLine($"Total File Size of Excel files: {excelFileSize}");
+        Console.WriteLine($"Total File Size of PowerPoint files: {powerpointFileSize}");
     }
 }
+
 catch (Exception e)
 {
-    Console.WriteLine(e.Message);
+    Console.WriteLine($"Exception caught: {e.Message}");
 }
-
-//From video
-
-DirectoryInfo di = new DirectoryInfo(basepath);
-Console.WriteLine($"\n\nUsing Directory Info class and object for {basepath}");
-Console.WriteLine($"DI name: {di.Name}");
-Console.WriteLine($"DI parent: {di.Parent}");
-Console.WriteLine($"DI full name: {di.FullName}");
-Console.WriteLine($"DI creation time: {di.CreationTime}");
-
-
-
-
-//Enumerate contents of directories only
-try
-{
-    Console.WriteLine("\nEnumeration tasks:\n");
-    string curPath = Directory.GetCurrentDirectory();
-    
-    //List<string> listDirs = new List<string>(Directory.EnumerateDirectories(curPath));
-    List<string> listDirs = new List<string>(Directory.EnumerateDirectories(basepath));
-
-    foreach (string directory in listDirs)
-    {
-        Console.WriteLine($"Enumerating over directories: {directory}");
-    }
-    Console.WriteLine("");
-
-    List<string> listFiles = new List<string>(Directory.EnumerateFiles(curPath));
-
-    foreach (string fileN in listDirs)
-    {
-        Console.WriteLine($"Enumerating over files: {fileN}");
-    }
-    Console.WriteLine("");
-
-    List<string> listEverything = new List<string>(Directory.EnumerateFiles(curPath));
-
-    foreach (string sysEnt in listDirs)
-    {
-        Console.WriteLine($"Enumerating over system entries: {sysEnt}");
-    }
-    Console.WriteLine("");
-
-}
-catch (Exception e)
-{
-    Console.WriteLine($"Failed on enumeration task: {e.Message}");
-}
-
-//Creating and deleting directories
-
