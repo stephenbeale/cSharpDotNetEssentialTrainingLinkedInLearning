@@ -1,36 +1,24 @@
-﻿//Transpose a date string using regex
+﻿using System.Text.RegularExpressions;
 
-using System.Text.RegularExpressions;
-
-Regex DateFormatter = Regex(@"[A-z]");
-
-//Take date string input
-
-Console.WriteLine("Input a date in the format dd-mm-yyyy or d-m-yy");
-string dateInput = Console.ReadLine();
-
-DateTime dt = new DateTime();
-
-if (DateTime.TryParse(dateInput, out dt))
+public class Answer
 {
-    Console.WriteLine($"Date parsed to: P{dt}");
+    public static Boolean ShowExpectedResult = false;
+    public static Boolean ShowHints = false;
+
+    static string ReverseDateFormat(string sourceDate)
+    {
+        const int TIMEOUT = 1000;
+		try
+		{
+			return Regex.Replace(sourceDate, 
+				@"^(?<mon>\d{1,2})/(?<day>\d{1,2})/(?<year>\d{2,4})$",
+				"${year}-${mon}-${day}", RegexOptions.None,
+			TimeSpan.FromMilliseconds(TIMEOUT));
+		}
+		catch (RegexMatchTimeoutException)
+		{
+			throw;
+		}
+    }
+
 }
-else if (!DateTime.TryParse(dateInput, out dt))
-{
-    Console.WriteLine("Invalid date, try again.");
-}
-
-//Return a date string in format 'yyyy-mm-dd'
-
-
-/*
- * Validate inputs for
- * day: 1-2 chars max.
- * month: 1-2 chars max.
- * year: 2 or 4 chars only
- * Invalid: return empty string
- */
-
-
-//Handle timeout
-
