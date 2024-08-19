@@ -1,33 +1,29 @@
-﻿//Replacements with Regex
-
+﻿using System.Diagnostics;
 using System.Text.RegularExpressions;
 
-string teststr1 = "The quick brown Fox jumps over the lazy Dog";
+const string thestr = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
-Regex CapWords = new Regex(@"[A-Z]\w+");
+//Use a stopwach to show elapsed time
+Stopwatch sw;
 
-//Replace string contents
-string result = CapWords.Replace(teststr1, "***");
-Console.WriteLine(teststr1);
-Console.WriteLine(result);
+//Use a timeout value when executing RegEx to guard against bad input
 
-//Function to generate replacement text on the fly according to logic - using a delegate
-//function takes match object as an argument, returns a string as a result
-string MakeUpper(Match m)
+//Run the expression and output the result
+
+try
 {
-    string s = m.ToString();
-    
-    //If match is at start of sentence, do nothing.
-    if(m.Index == 0 )
-    {
-        return s;
-    }
-    return s.ToUpper();
+	sw = Stopwatch.StartNew();
+	Regex CapWords = new Regex(@"(a+a+)+b", RegexOptions.None);
+	MatchCollection mc = CapWords.Matches(thestr);
+	sw.Stop();
+	Console.WriteLine($"Found {mc.Count} matches in {sw.Elapsed} time.");
+
+	foreach (Match match in mc)
+	{
+		Console.WriteLine($"'{match.Value}' found at position {match.Index}");
+	}
 }
-
-var upperStr = CapWords.Replace(teststr1, new MatchEvaluator(MakeUpper));
-Console.WriteLine("\nCapWords Replace using MakeUpper");
-Console.WriteLine($"Original: {teststr1}");
-Console.WriteLine($"Capitalised: {upperStr}");
-
-
+catch (Exception e)
+{
+	Console.WriteLine(e.Message);
+}
