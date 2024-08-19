@@ -17,8 +17,23 @@ public class Answer
 		}
 		catch (RegexMatchTimeoutException)
 		{
-			throw;
+			return sourceDate;
 		}
     }
+
+	public static string ReverseDate(string inputDate)
+	{
+		//Make sure it's a valid date before conversion
+		DateTime result;
+		if(DateTime.TryParse(inputDate, out result))
+		{
+			string reverseDate = ReverseDateFormat(inputDate);
+			return reverseDate;
+		}
+		else
+		{
+			return "";
+		}
+	}
 
 }
