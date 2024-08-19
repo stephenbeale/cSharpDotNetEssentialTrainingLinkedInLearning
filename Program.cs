@@ -1,32 +1,36 @@
-﻿using System.Diagnostics;
+﻿//Transpose a date string using regex
+
 using System.Text.RegularExpressions;
 
-const string thestr = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+Regex DateFormatter = Regex(@"[A-z]");
 
-//Use a stopwach to show elapsed time
-Stopwatch sw;
+//Take date string input
 
-//Use a timeout value when executing RegEx to guard against bad input
-const int MAX_REGEX_TIME = 1;
-//1 second timeout added
-TimeSpan timeout = TimeSpan.FromMilliseconds(MAX_REGEX_TIME);
+Console.WriteLine("Input a date in the format dd-mm-yyyy or d-m-yy");
+string dateInput = Console.ReadLine();
 
-//Run the expression and output the result
-try
+DateTime dt = new DateTime();
+
+if (DateTime.TryParse(dateInput, out dt))
 {
-	sw = Stopwatch.StartNew();
-	//If execution time of regex exceeds max. time I've set, must throw an exception
-	Regex CapWords = new Regex(@"(a+a+)+b", RegexOptions.None, timeout);
-	MatchCollection mc = CapWords.Matches(thestr);
-	sw.Stop();
-	Console.WriteLine($"Found {mc.Count} matches in {sw.Elapsed} time.");
-
-	foreach (Match match in mc)
-	{
-		Console.WriteLine($"'{match.Value}' found at position {match.Index}");
-	}
+    Console.WriteLine($"Date parsed to: P{dt}");
 }
-catch (RegexMatchTimeoutException e)
+else if (!DateTime.TryParse(dateInput, out dt))
 {
-	Console.WriteLine($"The Regex took too long to execute! {e.Message}");
+    Console.WriteLine("Invalid date, try again.");
 }
+
+//Return a date string in format 'yyyy-mm-dd'
+
+
+/*
+ * Validate inputs for
+ * day: 1-2 chars max.
+ * month: 1-2 chars max.
+ * year: 2 or 4 chars only
+ * Invalid: return empty string
+ */
+
+
+//Handle timeout
+
