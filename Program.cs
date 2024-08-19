@@ -1,74 +1,33 @@
-﻿//Look in a given directory
+﻿//Replacements with Regex
 
-var folder = "StevesDirectory";
-var resultsFile = "results.txt";
+using System.Text.RegularExpressions;
 
-//Variables to ohld results
-long XLSCount = 0, DOCCount = 0, PPTCount = 0;
-long XLSSize = 0, DOCSize = 0, PPTSize = 0;
-long totalFiles = 0, totalSize = 0;
+string teststr1 = "The quick brown Fox jumps over the lazy Dog";
 
+Regex CapWords = new Regex(@"[A-Z]\w+");
 
-bool IsOfficeFile(string fileName)
+//Replace string contents
+string result = CapWords.Replace(teststr1, "***");
+Console.WriteLine(teststr1);
+Console.WriteLine(result);
+
+//Function to generate replacement text on the fly according to logic - using a delegate
+//function takes match object as an argument, returns a string as a result
+string MakeUpper(Match m)
 {
-    if(fileName.EndsWith(".xlsx") || fileName.EndsWith(".docx") || fileName.EndsWith(".pptx"))
+    string s = m.ToString();
+    
+    //If match is at start of sentence, do nothing.
+    if(m.Index == 0 )
     {
-        return true;
+        return s;
     }
-    return false;
+    return s.ToUpper();
 }
 
-try
-{
-    //DI for given folder
-    DirectoryInfo di = new DirectoryInfo(folder);
-
-    foreach (FileInfo fi in di.EnumerateFiles())
-    {
-        if (IsOfficeFile(fi.Name))
-        {
-            totalFiles++;
-            totalSize += fi.Length;
-            if (fi.Name.EndsWith(".xlsx"))
-            {
-                XLSCount++;
-                XLSSize += fi.Length;
-            }
-            if (fi.Name.EndsWith("docx"))
-            {
-                DOCCount++;
-                DOCSize += fi.Length;
-            }
-            if (fi.Name.EndsWith("pptx"))
-            {
-                PPTCount++;
-                PPTSize += fi.Length;
-            }
-        }
-    }
-
-    //Output results
-
-    using (StreamWriter sw = File.CreateText(resultsFile))
-    {
-        sw.WriteLine("===== Results =======");
-        sw.WriteLine($"Total files: {totalFiles}");
-        sw.WriteLine($"Excel Count: {XLSCount}"); 
-        sw.WriteLine($"Word Count: {DOCCount}"); 
-        sw.WriteLine($"PPT Count: {PPTCount}\n"); 
-        sw.WriteLine($"Total size: {totalSize:N0}"); 
-        sw.WriteLine($"Excel size: {XLSSize:N0}"); 
-        sw.WriteLine($"Word size: {DOCSize:N0}");
-        sw.WriteLine($"PPT size: {PPTSize:N0}");
-    }
-
-}
-//Analyse file contents
-
-//Print out
+var upperStr = CapWords.Replace(teststr1, new MatchEvaluator(MakeUpper));
+Console.WriteLine("\nCapWords Replace using MakeUpper");
+Console.WriteLine($"Original: {teststr1}");
+Console.WriteLine($"Capitalised: {upperStr}");
 
 
-catch (Exception e)
-{
-    Console.WriteLine($"Exception caught: {e.Message}");
-}
